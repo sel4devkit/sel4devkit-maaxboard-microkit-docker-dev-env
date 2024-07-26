@@ -134,3 +134,16 @@ We choose to provision a current Distribution (Debian Bookworm) and its
 default provision of needed 64-bit Compilers and 64-bit Cross-Compilers:
 * GCC 12 (64-bit AMD64)
 * GCC 12 (64-bit AArch64 (Also known as: ARM64))
+
+## Tools With User Level Install
+
+The Microkit Toolchain includes dependencies on the following Tools which are
+normally installed and configured to some extent on a per-user basis:
++ Python
++ Rust
+
+Such Tools are problematic when seeking to frame a singular standard Image.
+The decision is taken to install these, with the user-specific properties, at
+the layer where user details become available (User Dev or User Me). This
+provides a conventional operating environment, while accepting a slightly
+greater per-user Image build time.

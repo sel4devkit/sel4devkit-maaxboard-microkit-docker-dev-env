@@ -11,26 +11,23 @@ set -exuo pipefail
 # Skeleton.
 mkdir -p "/util"
 mkdir -p "/util/rust"
+chown "${USER_NAME}:${GROUP_NAME}" "/util/rust"
 
 # Get Installer.
-cd "/util/rust"
-curl --proto '=https' -sSf --tlsv1.2 https://sh.rustup.rs > install-rust.sh
-chmod +x install-rust.sh
+sudo -u "${USER_NAME}" curl --proto '=https' -sSf --tlsv1.2 https://sh.rustup.rs --output /util/rust/install-rust.sh
+sudo -u "${USER_NAME}" chmod +x /util/rust/install-rust.sh
 
 # Prepare.
-mkdir -p "/util/rust/rustup"
-mkdir -p "/util/rust/cargo"
-chmod 777 -R "/util/rust/rustup"
-chmod 777 -R "/util/rust/cargo"
+sudo -u "${USER_NAME}" mkdir -p "/util/rust/rustup"
+sudo -u "${USER_NAME}" mkdir -p "/util/rust/cargo"
 
 # Execute.
-cd "/util/rust"
 export RUSTUP_HOME="/util/rust/rustup"
 export CARGO_HOME="/util/rust/cargo"
-./install-rust.sh --no-modify-path -y
+sudo -u "${USER_NAME}" --preserve-env=RUSTUP_HOME,CARGO_HOME /util/rust/install-rust.sh --no-modify-path -y
 
 # Add specific target.
-/util/rust/cargo/bin/rustup target add x86_64-unknown-linux-musl
+sudo -u "${USER_NAME}" --preserve-env=RUSTUP_HOME,CARGO_HOME /util/rust/cargo/bin/rustup target add x86_64-unknown-linux-musl
 
 # Get rust on path (for users).
 cat << 'EOF' >> "/etc/profile.d/050-rust_path.sh"

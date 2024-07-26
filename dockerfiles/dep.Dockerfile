@@ -53,14 +53,6 @@ RUN apt-get autoremove --purge --yes
 #===========================================================
 # Scripts
 #===========================================================
-ARG SCRIPT=dep-python.sh
-COPY scripts/${SCRIPT} /tmp/${SCRIPT}
-RUN --mount=type=ssh /bin/bash --login /tmp/${SCRIPT}
-
-ARG SCRIPT=dep-rust.sh
-COPY scripts/${SCRIPT} /tmp/${SCRIPT}
-RUN --mount=type=ssh /bin/bash --login /tmp/${SCRIPT}
-
 ARG SCRIPT=dep-version.sh
 COPY scripts/${SCRIPT} /tmp/${SCRIPT}
 RUN --mount=type=ssh /bin/bash --login /tmp/${SCRIPT}
@@ -68,8 +60,6 @@ RUN --mount=type=ssh /bin/bash --login /tmp/${SCRIPT}
 #===========================================================
 # Environment
 #===========================================================
-ENV RUSTUP_HOME="/util/rust/rustup"
-ENV CARGO_HOME="/util/rust/cargo"
 ENV STAMP_DEP="${STAMP_NAME} (${STAMP_DATE})"
 
 ################################################################################

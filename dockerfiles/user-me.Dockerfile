@@ -40,6 +40,14 @@ ARG USER_NAME=${HOST_USER_NAME}
 ARG GROUP_NAME=${HOST_GROUP_NAME}
 ARG LOCAL_LANG=${HOST_LOCAL_LANG}
 
+ARG SCRIPT=user-python.sh
+COPY scripts/${SCRIPT} /tmp/${SCRIPT}
+RUN --mount=type=ssh /bin/bash --login /tmp/${SCRIPT}
+
+ARG SCRIPT=user-rust.sh
+COPY scripts/${SCRIPT} /tmp/${SCRIPT}
+RUN --mount=type=ssh /bin/bash --login /tmp/${SCRIPT}
+
 ARG SCRIPT=user-home.sh
 COPY scripts/${SCRIPT} /tmp/${SCRIPT}
 RUN --mount=type=ssh /bin/bash --login /tmp/${SCRIPT}
@@ -59,6 +67,8 @@ RUN --mount=type=ssh /bin/bash --login /tmp/${SCRIPT}
 #===========================================================
 # Environment
 #===========================================================
+ENV RUSTUP_HOME="/util/rust/rustup"
+ENV CARGO_HOME="/util/rust/cargo"
 ENV STAMP_USER_ME="${STAMP_NAME} (${STAMP_DATE})"
 
 #===========================================================
