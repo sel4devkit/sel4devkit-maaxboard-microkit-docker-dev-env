@@ -2,7 +2,7 @@
 
 ## Purpose
 
-* Supports: seL4 Developer Kit ([manual]())
+* Supports: seL4 Developer Kit ([site](https://sel4devkit.github.io/))
 * Provides: MaaXBoard Microkit Docker Development Environment ([manual](./doc/MANUAL.md))
 
 ## License
