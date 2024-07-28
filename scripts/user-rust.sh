@@ -14,7 +14,7 @@ mkdir -p "/util/rust"
 chown "${USER_NAME}:${GROUP_NAME}" "/util/rust"
 
 # Get Installer.
-sudo -u "${USER_NAME}" curl --proto '=https' -sSf --tlsv1.2 https://sh.rustup.rs --output /util/rust/install-rust.sh
+sudo -u "${USER_NAME}" curl --proto "=https" -sSf --tlsv1.2 https://sh.rustup.rs --output /util/rust/install-rust.sh
 sudo -u "${USER_NAME}" chmod +x /util/rust/install-rust.sh
 
 # Prepare.

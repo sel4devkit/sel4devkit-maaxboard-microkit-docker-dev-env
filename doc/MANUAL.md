@@ -127,6 +127,20 @@ Two alternative Docker Images provide a user environment:
 * __User Me__: Extends Dep, to provide an environment tailored for the
   invoking user.
 
+## Git Hub and SSH
+
+Most seL4 material is maintained in Git, and specifically hosted on Git Hub.
+It is conventional to access this material via either HTTPS or SSH. The Docker
+Image is configured to permit use of either. In general, HTTPS requires less
+configuration, but may not be available in all contexts.
+
+For SSH, at Docker Image build, your host SSH Credentials are made available
+to the process via ssh-agent and ssh-add. This style, intentionally, ensures
+the Credentials are not embedded in the built Image. Thus, for SSH, at run
+time, no SSH Credentials are available by default. You may choose to map in
+your HOME_PATH, effectively importing all your personal settings (including
+any SSH Credentials) for use within the Docker Image.
+
 ## Distribution and Compiler Toolchain
 
 The Microkit Toolchain is compatible with recent Distributions and compilers.

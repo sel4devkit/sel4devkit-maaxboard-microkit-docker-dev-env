@@ -51,13 +51,6 @@ RUN apt-get clean autoclean
 RUN apt-get autoremove --purge --yes
 
 #===========================================================
-# Scripts
-#===========================================================
-ARG SCRIPT=dep-version.sh
-COPY scripts/${SCRIPT} /tmp/${SCRIPT}
-RUN --mount=type=ssh /bin/bash --login /tmp/${SCRIPT}
-
-#===========================================================
 # Environment
 #===========================================================
 ENV STAMP_DEP="${STAMP_NAME} (${STAMP_DATE})"

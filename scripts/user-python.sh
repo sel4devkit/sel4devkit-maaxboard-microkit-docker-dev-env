@@ -13,12 +13,10 @@ mkdir -p "/util/python"
 # onward tool chains.
 mkdir -p "/util/python/cache"
 chown "${USER_NAME}:${GROUP_NAME}" "/util/python/cache"
-chmod ug+rw "/util/python/cache"
 pip config --global set global.cache-dir "/util/python/cache"
 
 mkdir -p "/util/python/download"
 chown "${USER_NAME}:${GROUP_NAME}" "/util/python/download"
-chmod ug+rw "/util/python/download"
 sudo -u "${USER_NAME}" pip download --dest /util/python/download "mypy==0.910" 
 sudo -u "${USER_NAME}" pip download --dest /util/python/download "black==21.7b0"
 sudo -u "${USER_NAME}" pip download --dest /util/python/download "flake8==3.9.2"

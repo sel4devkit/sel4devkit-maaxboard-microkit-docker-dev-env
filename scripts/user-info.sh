@@ -5,10 +5,9 @@
 
 set -exuo pipefail
 
-# Visible version for outermost container.
-tee "/version.txt" << EOF
-sel4devkit-maaxboard-microkit-docker-dev-env
-1.0
+# Image information. Format: LABEL MAJOR MINOR
+tee "/info.txt" << EOF
+sel4devkit-maaxboard-microkit-docker-dev-env 1 0
 EOF
 
 ################################################################################

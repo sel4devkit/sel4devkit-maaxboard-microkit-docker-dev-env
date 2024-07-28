@@ -53,6 +53,10 @@ ARG SCRIPT=user-start.sh
 COPY scripts/${SCRIPT} /tmp/${SCRIPT}
 RUN --mount=type=ssh /bin/bash --login /tmp/${SCRIPT}
 
+ARG SCRIPT=user-info.sh
+COPY scripts/${SCRIPT} /tmp/${SCRIPT}
+RUN --mount=type=ssh /bin/bash --login /tmp/${SCRIPT}
+
 #===========================================================
 # Environment
 #===========================================================
