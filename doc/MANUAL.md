@@ -26,10 +26,9 @@ ensuring a consistent starting environment for each session.
 
 Two different entry points are provided, as "user-dev" and "user-me":
 * The "user-dev" operates with a fixed user name "developer", granted password
-  free access to root, via sudo. This
-  configuration is fully defined, and thus may be prepared in
-advance. This property permits a very simple deployment, and is particularly
-suited to Windows.
+  free access to root, via sudo. This configuration is fully defined, and thus
+may be prepared in advance. This property permits a very simple deployment,
+and is particularly suited to Windows.
 * The "user-me" is intended to be built, and then deployed, for a specific
   invoking user. It operates with the username of the invoking user, granted
 password free access to root, via sudo. This configuration can not be prepared
@@ -148,6 +147,40 @@ We choose to provision a current Distribution (Debian Bookworm) and its
 default provision of needed 64-bit Compilers and 64-bit Cross-Compilers:
 * GCC 12 (64-bit AMD64)
 * GCC 12 (64-bit AArch64 (Also known as: ARM64))
+
+## Effective User Developer on Linux
+
+On Linux, the "User Me" deployment is recommended, as it operates with the
+username of the invoking user, simplifying the mapping of external paths.
+
+Nevertheless, effective use of "User Developer" may be achieved through the
+strategy below.
+
+Prepare a host and home for the developer user:
+```
+mkdir ~/area
+mkdir ~/area/host
+mkdir ~/area/home
+```
+
+Populate the host and home as desired. For example:
+```
+cp ~/.bashrc ~/area/home
+cp ~/.bash_profile ~/area/home
+cp -r ~/.ssh ~/area/home
+```
+
+Run the User Developer Image, and adopt the host and home:
+```
+make run IMAGE=user-dev HOST_PATH=~/area/host HOME_PATH=~/area/home
+sudo chown -R developer:developer /host /home
+exit
+```
+
+Henceforth, use the host and home directly:
+```
+make run IMAGE=user-dev HOST_PATH=~/area/host HOME_PATH=~/area/home
+```
 
 ## Tools With User Level Install
 

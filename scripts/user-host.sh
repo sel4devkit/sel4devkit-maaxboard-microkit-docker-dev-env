@@ -7,7 +7,7 @@ set -exuo pipefail
 
 # Default host.
 mkdir "/host/"
-cat << EOF >> /host/README.txt
+cat << 'EOF' >> "/host/README.txt"
 User launched without HOST_DIR.
 This host will not persistient beyond the execution of this container.
 EOF

@@ -10,7 +10,7 @@ mkdir -p "/util"
 mkdir -p "/util/curl_home"
 
 # Mandate curl use ipv4.
-tee "/util/curl_home/.curlrc" << EOF
+cat << 'EOF' >> "/util/curl_home/.curlrc"
 --ipv4
 EOF
 
