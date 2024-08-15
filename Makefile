@@ -45,7 +45,7 @@ usage:
 STAMP_NAME := undefined
 ifneq (${IMAGE}, undefined)
 ifeq (${IMAGE}, user-me)
-STAMP_NAME := ${DOCKERHUB}/${NAMESPACE}/${IMAGE}-$(shell id -un):latest
+STAMP_NAME := ${DOCKERHUB}/${NAMESPACE}/${IMAGE}-dstorer:latest
 else
 STAMP_NAME := ${DOCKERHUB}/${NAMESPACE}/${IMAGE}:latest
 endif
@@ -109,6 +109,7 @@ run:
 	        --interactive \
 	        --tty \
 	        --hostname "sel4devkit-maaxboard-microkit" \
+			--mount type=bind,source="$(HOME)/.ssh",target="/home/dstorer/.ssh" \
 	        ${MAP_HOME_ARG} \
 	        ${MAP_HOST_ARG} \
 	        --mount type=bind,source="${ETC_LOCALTIME}",target="/etc/localtime,readonly" \
